@@ -1,0 +1,34 @@
+version: '2.1'
+
+# Production docker compose file
+
+services:
+  user-service:
+    container_name: qa-user-service
+    image: "qa/user-service:1.0.0"
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  qa-service:
+    container_name: qa-qa-service
+    image: "qa/qa-service:1.0.0"
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  game-service:
+    container_name: qa-game-service
+    image: "qa/game-service:1.0.0"
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  qa-composite-service:
+    container_name: qa-qa-composite-service
+    image: "qa/qa-composite-service:1.0.0"
+    mem_limit: 512m
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
